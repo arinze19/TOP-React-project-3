@@ -1,14 +1,14 @@
 # About 
 
-This Project is a part of the Learn Rreact series from [The odin project](https://theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/memory-card)
+This Project is a part of the Learn React series from [The odin project](https://theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/memory-card)
 
 ## Structure
 
-the src folder holds two directories. 'components' and 'styles'. Components is further divided into distinct directories that house specific components relating to one another. The styles components is structured the same as the components but houses css files for their respective namesake js files in components.
+the src folder holds two directories. 'components', 'helper-functions' and 'styles'. Components is further divided into distinct directories that house specific component files relating to one another. The styles and helper functions folder is structured the same as the components folder but houses css files and helper js files for their respective namesake components. 
 
 ## Live Preview
 
-A live preview of this project can be found [Here](httsp://arinze19.github.io/TOP-React-project-3)
+A live preview of this project can be found [Here](https://arinze19.github.io/TOP-React-project-3)
 
 ## Available Scripts
 

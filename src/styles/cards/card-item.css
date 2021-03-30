@@ -1,0 +1,18 @@
+.card {
+  padding: 1rem;
+  text-align: center;
+  background-color: #ffd50074;
+  cursor: pointer;
+  margin: 1em;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.07);
+}
+
+.card hr {
+    border: none;
+    height: 1px;
+    background-color: #10162f;
+}
