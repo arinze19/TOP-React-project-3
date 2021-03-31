@@ -34,7 +34,7 @@ function App() {
         })
         return pokemonCatalog
       })
-      .then(catalog => randomPicker(level, catalog))
+      // .then(catalog => randomPicker(level, catalog))
       // .then(randomPokemons => setPokemons(randomPokemons))
       .catch(err => console.log(err))
   }, []);
