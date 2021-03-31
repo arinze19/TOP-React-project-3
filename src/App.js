@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Header       from "./components/layout/Header";
-import CardList     from "./components/cards/CardList";
+// import CardList     from "./components/cards/CardList";
 // import randomPicker from "./helper-functions/app/randompicker"
 
 //  ============ initial state values
@@ -15,6 +15,7 @@ import CardList     from "./components/cards/CardList";
 // let pokemonCatalog = [];
 
 function App() {
+  const score = 0;
   // const [score, setScore]       = useState(initialScore);
   // const [level, setLevel]       = useState(initialLevel);
   // const [pokemons, setPokemons] = useState([]);
