@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Header       from "../layout/Header";
 import CardList     from "../cards/CardList";
-import randomPicker from "../../helper-functions/App/randomPicker"
-import "../../styles/App/App.css";
+import randomPicker from "../../helper-functions/app/randompicker"
+import "../../styles/app/App.css";
 
 //  ============ initial state values
 const genRandomPokemonList = (level) => {
