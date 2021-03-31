@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Header       from "./components/layout/Header";
 import CardList     from "./components/cards/CardList";
-import randomPicker from "./helper-functions/app/randompicker"
+// import randomPicker from "./helper-functions/app/randompicker"
 
 //  ============ initial state values
 const genRandomPokemonList = (level) => {
@@ -35,7 +35,7 @@ function App() {
         return pokemonCatalog
       })
       .then(catalog => randomPicker(level, catalog))
-      .then(randomPokemons => setPokemons(randomPokemons))
+      // .then(randomPokemons => setPokemons(randomPokemons))
       .catch(err => console.log(err))
   }, []);
 
@@ -44,7 +44,7 @@ function App() {
   return (
     <div className="App">
       <Header score={score} />
-      <CardList pokemons={pokemons} />
+      {/* <CardList pokemons={pokemons} /> */}
     </div>
   );
 }
