@@ -7,12 +7,6 @@
   max-width: 1220px;
 }
 
-.card-list-container img {
-  width: 120px;
-  height: 120px;
-}
-
-
 @media(max-width: 768px) {
   .card-list-container {
     width: 100%;

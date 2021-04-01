@@ -20,12 +20,21 @@ export function randomPicker(level, pokemonCatalog) {
   return newArray;
 }
 
-
 /**
  * randomly arrange items in an array
  * @param {Array} pokemons array to be processed
  * @returns {Array} newArray same array with its items randomly arranged
  */
 
+export function randomArranger(pokemons) {
+  const newArray         = [];
+  const shuffledPokemons = []
+  const boundary         = pokemons.length;
 
-
+  while (newArray.length < boundary) {
+    const r = Math.floor(Math.random() * boundary);
+    if (newArray.indexOf(r) === -1) newArray.push(r);
+  }
+  newArray.forEach(val => shuffledPokemons.push(pokemons[val]))
+  return shuffledPokemons
+}

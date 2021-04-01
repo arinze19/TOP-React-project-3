@@ -7,6 +7,12 @@
   transition: all 0.3s ease-in-out;
 }
 
+.card img {
+  width: 120px;
+  height: 120px;
+}
+
+
 .card:hover {
   transform: scale(1.07);
 }
@@ -15,4 +21,11 @@
     border: none;
     height: 1px;
     background-color: #10162f;
+}
+
+@media(max-width: 768px) {
+  .card img {
+    width: 80px;
+    height: 80px;
+  }
 }

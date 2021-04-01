@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Header         from "./components/layout/Header";
 import CardList       from "./components/cards/CardList";
-import {randomPicker} from "./helper-functions/app/index";
+import {randomPicker, randomArranger} from "./helper-functions/app/index";
 
 //  ============ initial state values
 const initialScore = {
@@ -19,18 +19,22 @@ function App() {
 
   // ======================== handler functions
   const handleClick = (id) => {
-    let selectedPokemon       = pokemons.find((pokemon) => pokemon.id === id);
-    if(selectedPokemon.isClicked) {
-      return alert('you have lost')
-    } 
-    
-    setScore(prevScore => prevScore + 1)
-    selectedPokemon.isClicked = true
+    const newPokemons       = [...pokemons]
+    const clickedPokemonIdx = pokemons.findIndex(pok => pok.id === id)
 
-    const newPokemons         = pokemons.filter((pokemon) => pokemon.id !== id);
-    newPokemons.push(selectedPokemon);
+    // end game if selected pokemon has been clicked
+    if(newPokemons[clickedPokemonIdx].isClicked) alert('You have lost')
 
-    setPokemons(newPokemons);
+    setScore(prevScore => {
+      return {
+        currentScore: prevScore.currentScore + 1,
+        highScore: prevScore.highScore + 1
+      }
+    })
+    newPokemons[clickedPokemonIdx].isClicked = true
+
+    // shuffle pokemons and set pokemon state
+    setPokemons(randomArranger(newPokemons))
   };
 
   useEffect(() => {
