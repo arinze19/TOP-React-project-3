@@ -16,5 +16,6 @@
 @media(max-width: 768px) {
   .card-list-container {
     width: 100%;
+    justify-content: space-between;
   }
 }
