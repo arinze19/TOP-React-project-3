@@ -1,4 +1,4 @@
-import "../../styles/layout/header.css";
+import "../../styles/layout/the-header.css";
 
 function header({ score }) {
   return (
