@@ -38,3 +38,4 @@ export function randomArranger(pokemons) {
   newArray.forEach(val => shuffledPokemons.push(pokemons[val]))
   return shuffledPokemons
 }
+
