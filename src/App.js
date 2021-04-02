@@ -7,15 +7,14 @@ import TheMenu        from "./components/layout/TheMenu";
 //  ============ initial state values
 const initialScore = {
   currentScore: 0,
-  highScore: 0,
+  highScore: JSON.parse(localStorage.getItem("highScore")) || 0,
 };
-// const initialLevel = 1;
+const initialLevel = 1;
 let pokemonCatalog = [];
 
 function App() {
   const [score, setScore]       = useState(initialScore);
-  // const [level, setLevel]       = useState(initialLevel);
-  const level                   = 1
+  const [level, setLevel]       = useState(initialLevel);
   const [pokemons, setPokemons] = useState([]);
 
   // ======================== handler functions
@@ -24,18 +23,38 @@ function App() {
     const clickedPokemonIdx = pokemons.findIndex(pok => pok.id === id)
 
     // end game if selected pokemon has been clicked
-    if(newPokemons[clickedPokemonIdx].isClicked) alert('You have lost')
+    if(newPokemons[clickedPokemonIdx].isClicked) {
+      alert('Game Over Champ. Good game')
+      return setLevel(1)
+    }
 
     setScore(prevScore => {
-      return {
-        currentScore: prevScore.currentScore + 1,
-        highScore: prevScore.highScore + 1
+      if(prevScore.currentScore >= prevScore.highScore) {
+        // set new high score in local storage
+        JSON.stringify(localStorage.setItem("highScore", prevScore.currentScore + 1))
+        return {
+          currentScore: prevScore.currentScore + 1,
+          highScore: prevScore.currentScore + 1          
+        }
+      } 
+      
+      else {
+        return {
+          ...prevScore,
+          currentScore: prevScore.currentScore + 1,
+        }
       }
     })
     newPokemons[clickedPokemonIdx].isClicked = true
 
-    // shuffle pokemons and set pokemon state
-    setPokemons(randomArranger(newPokemons))
+    const allPokesClicked = newPokemons.every(pokemon => pokemon.isClicked === true)
+    if(allPokesClicked) {
+      // upgrade level if all pokemons have been clicked
+      setLevel(prevLevel => prevLevel + 1)
+    } else {
+      // shuffle pokemons and set pokemon state
+      setPokemons(randomArranger(newPokemons))
+    }
   };
 
   useEffect(() => {
@@ -47,7 +66,7 @@ function App() {
           const idxPad     = (idx + 1).toString().padStart(3, "0");
           const newPokemon = {
             name: item.name,
-            id: item.id,
+            id: idx,
             imgUrl: `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${idxPad}.png`,
             isClicked: false,
           };
