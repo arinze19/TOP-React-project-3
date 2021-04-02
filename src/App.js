@@ -25,6 +25,10 @@ function App() {
     // end game if selected pokemon has been clicked
     if(newPokemons[clickedPokemonIdx].isClicked) {
       alert('Game Over Champ. Good game')
+      setScore(prevScore => {
+        ...prevScore,
+        currentScore: 0
+      })
       return setLevel(1)
     }
 
