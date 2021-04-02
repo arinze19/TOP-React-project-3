@@ -27,8 +27,13 @@ function App() {
       alert('Game Over Champ. Good game')
       setScore(prevScore => {
         return {
+<<<<<<< HEAD
           ...prevScore,
           currentScore: 0
+=======
+         ...prevScore,
+         currentScore: 0
+>>>>>>> 6f3369bdf2ad5fdd37b1dc4f7600f59fd0904639
         }
       })
       return setLevel(1)
