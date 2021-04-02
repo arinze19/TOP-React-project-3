@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../../styles/layout/the-menu.css";
 
 function TheMenu() {
-  const [infoVisible, setInfoVisible] = useState(false);
+  const [infoVisible, setInfoVisible] = useState(true);
 
   const hideInfoStyle = { display: "none" };
   const showInfoStyle = { display: "block" };
