@@ -25,25 +25,34 @@
   bottom: 6rem;
   right: 4rem;
   box-shadow: 0 2px 5px rgba(16, 16, 16, 0.44);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   transition: all 0.3s ease-in-out;
   background-color: white;
   overflow-y: scroll;
 }
 
 .menu-info-container__header {
-  background-color: #3a10e5;
-  color: white;
-  padding: 1rem;
   text-align: center;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  display: flex;
 }
 
-.menu-info-container__header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
+.menu-info-container__header__option {
+  border: none;
+  padding: 1rem;
+  background-color: transparent;
+  font-size: 1.1rem;
+  width: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+.active-option {
+  background-color: #3a10e5;
+  color: white;
+}
+
+.menu-info-container__header__option:hover:not(.active-option) {
+  background-color: #3b10e529;
 }
 
 .menu-info-container__body {

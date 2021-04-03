@@ -39,3 +39,15 @@ export function randomArranger(pokemons) {
   return shuffledPokemons
 }
 
+/**
+ * 
+ * 
+ */
+
+// export function countdownTimer(initialCounter) {
+//   const countdown  = new Date().getTime()
+//   const difference = Math.round((countdown - initialCounter) / 1000)
+
+//   console.log(15 - difference)
+// }
+

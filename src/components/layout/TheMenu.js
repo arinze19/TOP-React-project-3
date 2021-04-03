@@ -2,12 +2,22 @@ import { useState } from "react";
 import "../../styles/layout/the-menu.css";
 
 function TheMenu() {
-  const [infoVisible, setInfoVisible] = useState(true);
+  const [infoVisible, setInfoVisible]   = useState(true);
+  const [activeOption, setActiveOption] = useState("objective");
 
-  const hideInfoStyle = { display: "none" };
-  const showInfoStyle = { display: "block" };
-  const toggleInfo    = () => setInfoVisible((prevInfoVisible) => !prevInfoVisible);
-  
+  const hideInfoStyle     = { display: "none" };
+  const showInfoStyle     = { display: "block" };
+  const objectiveActive   = activeOption === "objective" ? "active-option" : null;
+  const leaderBoardActive = activeOption === "leader-board" ? "active-option" : null;
+  const toggleInfo        = () => setInfoVisible((prevInfoVisible) => !prevInfoVisible);
+  const toggleActiveOpt   = () =>setActiveOption((prevActiveOption) => {
+      if (prevActiveOption === "objective") {
+        return "leader-board";
+      }
+
+      return "objective";
+    });
+
   return (
     <>
       <div
@@ -15,15 +25,26 @@ function TheMenu() {
         style={!infoVisible ? showInfoStyle : hideInfoStyle}
       >
         <div className="menu-info-container__header">
-          <h3>Objective</h3>
+          <div
+            className={`menu-info-container__header__option ${objectiveActive}`}
+            onClick={() => toggleActiveOpt()}
+          >
+            Objective
+          </div>
+          <div
+            className={`menu-info-container__header__option ${leaderBoardActive}`}
+            onClick={() => toggleActiveOpt()}
+          >
+            Leader Board
+          </div>
         </div>
         <div className="menu-info-container__body">
           <p>
-            The goal is to click on individual pokemons and correctly recall
-            those you have clicked. The pokemons are shuffled upon 
-            each click. Clicking on a pokemon more than once means game 
-            over for you champ. You advance to the next level once all 
-            available pokemons have been clicked. Goodluck 🍀
+            This application puts your memory to the test. You are presented
+            with multiple images of pokemons. The images get shuffled every-time
+            they are clicked. You CAN NOT click on any image more than once or
+            else your score resets to zero. The main objective is to get the
+            highest score as possible.. Goodluck 🍀
           </p>
         </div>
       </div>
