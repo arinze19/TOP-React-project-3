@@ -31,29 +31,12 @@
 }
 
 .menu-info-container__header {
-  text-align: center;
-  display: flex;
-}
-
-.menu-info-container__header__option {
-  border: none;
-  padding: 1rem;
-  background-color: transparent;
-  font-size: 1.1rem;
-  width: 50%;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  font-weight: bold;
-}
-
-.active-option {
-  background-color: #3a10e5;
   color: white;
+  text-align: center;
+  background-color: #3a10e5;
+  padding: 0.5rem;
 }
 
-.menu-info-container__header__option:hover:not(.active-option) {
-  background-color: #3b10e529;
-}
 
 .menu-info-container__body {
   padding: 1rem;

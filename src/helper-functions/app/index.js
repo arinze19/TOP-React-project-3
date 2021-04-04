@@ -38,16 +38,3 @@ export function randomArranger(pokemons) {
   newArray.forEach(val => shuffledPokemons.push(pokemons[val]))
   return shuffledPokemons
 }
-
-/**
- * 
- * 
- */
-
-// export function countdownTimer(initialCounter) {
-//   const countdown  = new Date().getTime()
-//   const difference = Math.round((countdown - initialCounter) / 1000)
-
-//   console.log(15 - difference)
-// }
-

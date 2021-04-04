@@ -3,20 +3,10 @@ import "../../styles/layout/the-menu.css";
 
 function TheMenu() {
   const [infoVisible, setInfoVisible]   = useState(true);
-  const [activeOption, setActiveOption] = useState("objective");
 
   const hideInfoStyle     = { display: "none" };
   const showInfoStyle     = { display: "block" };
-  const objectiveActive   = activeOption === "objective" ? "active-option" : null;
-  const leaderBoardActive = activeOption === "leader-board" ? "active-option" : null;
   const toggleInfo        = () => setInfoVisible((prevInfoVisible) => !prevInfoVisible);
-  const toggleActiveOpt   = () =>setActiveOption((prevActiveOption) => {
-      if (prevActiveOption === "objective") {
-        return "leader-board";
-      }
-
-      return "objective";
-    });
 
   return (
     <>
@@ -25,18 +15,7 @@ function TheMenu() {
         style={!infoVisible ? showInfoStyle : hideInfoStyle}
       >
         <div className="menu-info-container__header">
-          <div
-            className={`menu-info-container__header__option ${objectiveActive}`}
-            onClick={() => toggleActiveOpt()}
-          >
-            Objective
-          </div>
-          <div
-            className={`menu-info-container__header__option ${leaderBoardActive}`}
-            onClick={() => toggleActiveOpt()}
-          >
-            Leader Board
-          </div>
+          <h3>Objective</h3>
         </div>
         <div className="menu-info-container__body">
           <p>
