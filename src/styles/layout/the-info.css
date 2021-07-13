@@ -1,0 +1,41 @@
+.the-info-container {
+  padding: 1rem;
+  background-color: bisque;
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  width: 350px;
+  height: 200px;
+  overflow: scroll;
+  line-height: 1.5;
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.the-info-container h2 {
+  margin: 0;
+  text-align: center;
+}
+
+.the-info-container button {
+  background-color: #3a10e5;
+  color: #ffffff;
+  padding: 1rem;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.the-info-container button:hover {
+  background-color: #3510c5;
+}
+
+@media (max-width: 768px) {
+  .the-info-container {
+    bottom: 1rem;
+    left: 1rem;
+    width: 90%;
+    height: 200px;
+    margin: 0 auto;
+  }
+}
