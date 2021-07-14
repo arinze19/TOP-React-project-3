@@ -2,7 +2,7 @@ import { useState, useEffect }        from "react";
 import {randomPicker, randomArranger} from "./helper-functions/app/index";
 import TheHeader      from "./components/layout/TheHeader";
 import CardList       from "./components/cards/CardList";
-import TheInfo        from "./components/layout/TheInfo";
+import TheMenu        from "./components/layout/TheMenu";
 
 //  ============ initial state values
 const initialScore = {
@@ -89,7 +89,7 @@ function App() {
     <div className="App">
       <TheHeader score={score} />
       <CardList pokemons={pokemons} handleClick={handleClick} level={level} />
-      <TheInfo />
+      <TheMenu />
     </div>
   );
 }
