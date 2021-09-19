@@ -1,6 +1,7 @@
 import "../../styles/layout/the-header.css";
+import { HeaderProps } from '../../types';
 
-function header({ score }) {
+function header({ score }: HeaderProps) {
   return (
     <header className="header-container">
       <div className="header-container__logo">

@@ -1,7 +1,9 @@
 import CardItem from "./CardItem";
 import "../../styles/cards/card-list.css";
 
-function cardList({ pokemons, level, handleClick }) {
+import { CardListProps } from '../../types';
+
+function cardList({ pokemons, level, handleClick }: CardListProps) {
   const pokemonsList = pokemons.map((pokemon, idx) => (
     <CardItem pokemon={pokemon} key={idx} handleClick={handleClick} />
   ));

@@ -4,23 +4,25 @@ import TheHeader      from "./components/layout/TheHeader";
 import CardList       from "./components/cards/CardList";
 import TheMenu        from "./components/layout/TheMenu";
 
+import { pokemon, score } from './types';
+
 //  ============ initial state values
-const initialScore = {
+const initialScore: score = {
   currentScore: 0,
-  highScore: JSON.parse(localStorage.getItem("highScore")) || 0,
+  highScore: +JSON.parse(localStorage.getItem("highScore")!) || 0,
 };
-const initialLevel = 1;
-let pokemonCatalog = [];
+const initialLevel: number = 1;
+let pokemonCatalog: pokemon[] = [];
 
 function App() {
-  const [score, setScore]       = useState(initialScore);
-  const [level, setLevel]       = useState(initialLevel);
-  const [pokemons, setPokemons] = useState([]);
+  const [score, setScore]       = useState<score>(initialScore);
+  const [level, setLevel]       = useState<number>(initialLevel);
+  const [pokemons, setPokemons] = useState<pokemon[]>([]);
 
   // ======================== handler functions
-  const handleClick = (id) => {
-    const newPokemons       = [...pokemons]
-    const clickedPokemonIdx = pokemons.findIndex(pok => pok.id === id)
+  const handleClick = (id: number) => {
+    const newPokemons: pokemon[]       = [...pokemons]
+    const clickedPokemonIdx = pokemons.findIndex((pokemon: pokemon) => pokemon.id === id)
 
     // end game if selected pokemon has been clicked
     if(newPokemons[clickedPokemonIdx].isClicked) {
@@ -37,7 +39,8 @@ function App() {
     setScore(prevScore => {
       if(prevScore.currentScore >= prevScore.highScore) {
         // set new high score in local storage
-        JSON.stringify(localStorage.setItem("highScore", prevScore.currentScore + 1))
+        const highScore = prevScore.currentScore + 1;
+        JSON.stringify(localStorage.setItem("highScore", highScore.toString()))
         return {
           currentScore: prevScore.currentScore + 1,
           highScore: prevScore.currentScore + 1          
@@ -68,7 +71,7 @@ function App() {
       .then((result) => result.json())
       .then((data) => data.results)
       .then((results) => {
-        results.forEach((item, idx) => {
+        results.forEach((item: pokemon, idx: number) => {
           const idxPad     = (idx + 1).toString().padStart(3, "0");
           const newPokemon = {
             name: item.name,
@@ -82,7 +85,7 @@ function App() {
       })
       .then((catalog) => randomPicker(level, catalog))
       .then((randomPokemons) => setPokemons(randomPokemons))
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err));
   }, [level]);
 
   return (

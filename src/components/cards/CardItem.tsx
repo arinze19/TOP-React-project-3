@@ -1,6 +1,8 @@
 import "../../styles/cards/card-item.css";
 
-function cardItem({ pokemon, handleClick, id }) {
+import { CardItemProps } from "../../types";
+
+function cardItem({ pokemon, handleClick }: CardItemProps) {
   return (
     <div className="card" onClick={() => handleClick(pokemon.id)}>
       <img src={pokemon.imgUrl} alt={pokemon.name} />
