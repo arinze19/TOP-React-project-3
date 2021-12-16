@@ -1,6 +1,6 @@
 # About
 
-This Project is a part of the Learn React series from [The odin project](https://theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/memory-card)
+This Project is a DYI:project from the Learn React series on [The odin project](https://theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/memory-card)
 
 ## Structure
 
@@ -10,7 +10,7 @@ the src folder holds three directories. 'components', 'helper-functions' and 'st
 
 1. Build an web based game application that presents players with multiple images
 2. The images should get shuffled every time an image is selected
-3. Players CAN NOT click on the same image y=twice, doing so results to game over for the player
+3. Players CAN NOT click on the same image twice, doing so results to game over for the player
 4. Player score is calculated based on their plays of the game
 
 ## Added Feature
