@@ -12,6 +12,7 @@ function TheMenu() {
       <div
         className='menu-info-container'
         style={infoVisible ? showInfoStyle : hideInfoStyle }
+        data-testid="the-menu"
       >
         <div className='menu-info-container__header'>
           <h3>Objective</h3>
@@ -27,6 +28,7 @@ function TheMenu() {
           <button
             className='menu-info-container__button'
             onClick={() => setInfoVisible(false)}
+            data-testid="the-menu-button"
           >
             Okay
           </button>

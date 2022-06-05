@@ -10,8 +10,8 @@ function header({ score }: HeaderProps) {
       </div>
 
       <ul className="header-container__score-info">
-        <li>Your Score: {score.currentScore}</li>
-        <li>
+        <li data-testid="current-score">Your Score: {score.currentScore}</li>
+        <li data-testid="high-score">
           High Score<i className="las la-star"></i>: {score.highScore}
         </li>
       </ul>
