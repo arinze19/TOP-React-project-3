@@ -67,25 +67,27 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=500")  
-      .then((result) => result.json())
-      .then((data) => data.results)
-      .then((results) => {
-        results.forEach((item: pokemon, idx: number) => {
-          const idxPad     = (idx + 1).toString().padStart(3, "0");
-          const newPokemon = {
-            name: item.name,
-            id: idx,
-            imgUrl: `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${idxPad}.png`,
-            isClicked: false,
-          };
-          pokemonCatalog.push(newPokemon);
-        });
-        return pokemonCatalog;
-      })
-      .then((catalog) => randomPicker(level, catalog))
-      .then((randomPokemons) => setPokemons(randomPokemons))
-      .catch((err) => alert(err));
+      (async () => {
+        await fetch("https://pokeapi.co/api/v2/pokemon?limit=500")  
+        .then((result) => result.json())
+        .then((data) => data.results)
+        .then((results) => {
+          results.forEach((item: pokemon, idx: number) => {
+            const idxPad     = (idx + 1).toString().padStart(3, "0");
+            const newPokemon = {
+              name: item.name,
+              id: idx,
+              imgUrl: `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${idxPad}.png`,
+              isClicked: false,
+            };
+            pokemonCatalog.push(newPokemon);
+          });
+          return pokemonCatalog;
+        })
+        .then((catalog) => randomPicker(level, catalog))
+        .then((randomPokemons) => setPokemons(randomPokemons))
+        .catch((err) => alert(err));
+      })()
   }, [level]);
 
   return (
