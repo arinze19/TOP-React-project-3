@@ -1,26 +1,26 @@
 export interface pokemon {
-    id: number,
-    name: string,
-    imgUrl: string,
-    isClicked: boolean
+  id: number;
+  name: string;
+  isClicked: boolean;
+  url: string;
 }
 
 export interface score {
-    currentScore: number,
-    highScore: number
+  currentScore: number;
+  highScore: number;
 }
 
 export type CardItemProps = {
-    pokemon: pokemon;
-    handleClick: (id: number) => void;
-}
+  pokemon: pokemon;
+  handleClick: (id: number) => void;
+};
 
 export type CardListProps = {
-    pokemons: pokemon[],
-    level: number,
-    handleClick: (id: number) => void
-}
+  pokemons: pokemon[];
+  level: number;
+  handleClick: (id: number) => void;
+};
 
 export type HeaderProps = {
-    score: score
-}
+  score: score;
+};

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import '../../styles/layout/the-info.css';
+import React from 'react';
+import '@styles/layout/the-info.css';
 
 export default function TheInfo() {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = React.useState(true);
 
-  const infoStyle = active ? { display: 'block' } : { display: 'none' }
+  const infoStyle = active ? { display: 'block' } : { display: 'none' };
 
   return (
     <div className='the-info-container' style={infoStyle}>
@@ -16,9 +16,7 @@ export default function TheInfo() {
         score resets to zero. The main objective is to get the highest score as
         possible.. Goodluck 🍀
       </p>
-      <button onClick={() => setActive(!active)}>
-          Okay
-      </button>
+      <button onClick={() => setActive(!active)}>Okay</button>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import TheHeader from 'components/layout/TheHeader';
-import { score } from 'types';
+import TheHeader from '@components/layout/TheHeader';
+import { score } from '../../types';
 
 test('The Header renders the correct scoreline', async () => {
   const score: score = {

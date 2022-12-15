@@ -1,6 +1,5 @@
-import CardItem from "./CardItem";
-import "../../styles/cards/card-list.css";
-
+import CardItem from './CardItem';
+import '@styles/cards/card-list.css';
 import { CardListProps } from '../../types';
 
 function cardList({ pokemons, level, handleClick }: CardListProps) {
@@ -10,8 +9,8 @@ function cardList({ pokemons, level, handleClick }: CardListProps) {
 
   return (
     <>
-      <h2 style={{ textAlign: "center" }}>Level {level}</h2>
-      <div className="card-list-container">{pokemonsList}</div>
+      <h2 style={{ textAlign: 'center' }}>Level {level}</h2>
+      <div className='card-list-container'>{pokemonsList}</div>
     </>
   );
 }

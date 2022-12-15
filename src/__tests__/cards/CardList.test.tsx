@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import CardList from 'components/cards/CardList';
-import { getMockPokemons } from 'helper-functions/test-helpers';
+import CardList from '@components/cards/CardList';
+import { getMockPokemons } from '@helpers/test-helpers';
 
 test('Card List renders correct number of pokemons', async () => {
   const handleClick = () => jest.fn();

@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import '../../styles/layout/the-menu.css';
+import React from 'react';
+import '@styles/layout/the-menu.css';
 
 function TheMenu() {
-  const [infoVisible, setInfoVisible] = useState(true);
+  const [infoVisible, setInfoVisible] = React.useState(true);
 
   const hideInfoStyle = { display: 'none' };
   const showInfoStyle = { display: 'block' };
@@ -11,8 +11,8 @@ function TheMenu() {
     <>
       <div
         className='menu-info-container'
-        style={infoVisible ? showInfoStyle : hideInfoStyle }
-        data-testid="the-menu"
+        style={infoVisible ? showInfoStyle : hideInfoStyle}
+        data-testid='the-menu'
       >
         <div className='menu-info-container__header'>
           <h3>Objective</h3>
@@ -28,7 +28,7 @@ function TheMenu() {
           <button
             className='menu-info-container__button'
             onClick={() => setInfoVisible(false)}
-            data-testid="the-menu-button"
+            data-testid='the-menu-button'
           >
             Okay
           </button>
