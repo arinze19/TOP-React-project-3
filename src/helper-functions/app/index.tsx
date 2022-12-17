@@ -41,7 +41,7 @@ export const getPokemons = async (
   level: number
 ): Promise<[pokemon[], unknown]> => {
   try {
-    const offset = Math.floor(Math.random() * 100); // pokeapi has 1154 pokemons, so enabling pagination offset of up to 1000?
+    const offset = Math.floor(Math.random() * 80); // pokeapi has 1154 pokemons, so enabling pagination offset of up to 1000?
     const { data } = await axios.get(
       `https://pokeapi.co/api/v2/pokemon?limit=${level + 10}&offset=${
         offset * 10

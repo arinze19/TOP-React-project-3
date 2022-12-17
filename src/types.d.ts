@@ -17,7 +17,6 @@ export type CardItemProps = {
 
 export type CardListProps = {
   pokemons: pokemon[];
-  level: number;
   handleClick: (id: number) => void;
 };
 
