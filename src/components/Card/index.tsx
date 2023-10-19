@@ -16,10 +16,12 @@ export interface CardItemProps {
 
 const Card = ({ pokemons, handleClick }: CardProps) => {
   return (
-    <div className='card-list-container'>
-      {pokemons.map((pokemon, idx) => (
-        <CardItem pokemon={pokemon} key={idx} handleClick={handleClick} />
-      ))}
+    <div className='card-list__container'>
+      <div className='card-list__main'>
+        {pokemons.map((pokemon, idx) => (
+          <CardItem pokemon={pokemon} key={idx} handleClick={handleClick} />
+        ))}
+      </div>
     </div>
   );
 };

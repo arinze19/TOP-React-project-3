@@ -1,8 +1,8 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Card from '@components/Card';
 import Header from '@components/Header';
 import Loader from '@components/Loader';
-import { randomArranger, getPokemons } from './helper-functions';
+import { randomArranger, getPokemons } from './utils';
 import { Pokemon, Score } from './types';
 
 //  ============ initial state values
@@ -12,11 +12,11 @@ const initialScore: Score = {
 };
 
 function App() {
-  const [score, setScore] = React.useState<Score>(initialScore);
-  const [level, setLevel] = React.useState({ current: 1 });
-  const [pokemons, setPokemons] = React.useState<Pokemon[]>([]);
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [isError, setIsError] = React.useState(false);
+  const [score, setScore] = useState<Score>(initialScore);
+  const [level, setLevel] = useState({ current: 1 });
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleClick = (id: number) => {
     const clickedPokemonIdx = pokemons.findIndex(
@@ -65,7 +65,7 @@ function App() {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     (async () => {
       setIsLoading(true);
       setIsError(false);
@@ -82,7 +82,7 @@ function App() {
   }, [level]);
 
   return (
-    <React.Fragment>
+    <>
       <Header score={score} />
       <h2 style={{ textAlign: 'center' }}>Level {level.current}</h2>
       {isLoading ? (
@@ -92,7 +92,7 @@ function App() {
       ) : (
         <Card pokemons={pokemons} handleClick={handleClick} />
       )}
-    </React.Fragment>
+    </>
   );
 }
 

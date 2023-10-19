@@ -9,3 +9,10 @@ export interface Score {
   currentScore: number;
   highScore: number;
 }
+
+export interface PokemonAPIResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: Pokemon[];
+}

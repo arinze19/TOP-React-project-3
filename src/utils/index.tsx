@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Pokemon } from '../types';
+import { Pokemon, PokemonAPIResponse } from '../types';
 
 export function randomPicker(
   level: number,
@@ -35,6 +35,31 @@ export function randomArranger(pokemons: Pokemon[]): Pokemon[] {
   }
   newArray.forEach((val) => shuffledPokemons.push(pokemons[val]));
   return shuffledPokemons;
+}
+
+export async function fetchPokemonsFromAPI(url: string) {
+  try {
+    const { data } = await axios.get<PokemonAPIResponse>(url);
+
+    return formatPokemons(data.results);
+  } catch (err) {
+    throw new Error('Something went wrong');
+  }
+}
+
+export function formatPokemons(pokemons?: Pokemon[]) {
+  if (!pokemons) return [];
+
+  const clone = [...pokemons];
+
+  return clone.map((pokemon, id) => {
+    const idx = pokemon.url.slice(34, -1).toString().padStart(3, '0');
+
+    pokemon.id = id;
+    pokemon.url = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${idx}.png`;
+    pokemon.isClicked = false;
+    return pokemon;
+  });
 }
 
 export const getPokemons = async (

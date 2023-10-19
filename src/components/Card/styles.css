@@ -11,7 +11,11 @@
   transition: all 0.3s ease-in-out;
 }
 
-.card-list-container {
+.card-list__container h2 {
+  text-align: center;
+}
+
+.card-list__main {
   display: flex;
   width: 50%;
   flex-wrap: wrap;
