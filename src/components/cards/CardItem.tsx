@@ -10,9 +10,9 @@ function cardItem({ pokemon, handleClick }: CardItemProps) {
     >
       <img src={pokemon.url} alt={pokemon.name} />
       <hr />
-      <div className='card-item-container__info' data-testid='card-item-name'>
+      <span className='card-item__name' data-testid='card-item-name'>
         {pokemon.name}
-      </div>
+      </span>
     </div>
   );
 }
