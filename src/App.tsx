@@ -2,25 +2,25 @@ import React from 'react';
 import Card from '@components/Card';
 import Header from '@components/Header';
 import Loader from '@components/Loader';
-import { randomArranger, getPokemons } from '@helpers/app';
-import { pokemon, score } from './types';
+import { randomArranger, getPokemons } from './helper-functions';
+import { Pokemon, Score } from './types';
 
 //  ============ initial state values
-const initialScore: score = {
+const initialScore: Score = {
   currentScore: 0,
   highScore: +JSON.parse(localStorage.getItem('highScore')!) || 0,
 };
 
 function App() {
-  const [score, setScore] = React.useState<score>(initialScore);
+  const [score, setScore] = React.useState<Score>(initialScore);
   const [level, setLevel] = React.useState({ current: 1 });
-  const [pokemons, setPokemons] = React.useState<pokemon[]>([]);
+  const [pokemons, setPokemons] = React.useState<Pokemon[]>([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
 
   const handleClick = (id: number) => {
     const clickedPokemonIdx = pokemons.findIndex(
-      (pokemon: pokemon) => pokemon.id === id
+      (pokemon: Pokemon) => pokemon.id === id
     );
     // end game if selected pokemon has been clicked
     if (pokemons[clickedPokemonIdx].isClicked) {

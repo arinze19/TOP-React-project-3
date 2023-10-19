@@ -2,15 +2,15 @@
 import './styles.css';
 
 // Types
-import { pokemon } from 'src/types';
+import { Pokemon } from '../../types';
 
 export interface CardProps {
-  pokemons: pokemon[];
+  pokemons: Pokemon[];
   handleClick: (id: number) => void;
 }
 
 export interface CardItemProps {
-  pokemon: pokemon;
+  pokemon: Pokemon;
   handleClick: (id: number) => void;
 }
 

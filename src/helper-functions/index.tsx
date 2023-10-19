@@ -1,13 +1,13 @@
 import axios from 'axios';
-import { pokemon } from '../../types';
+import { Pokemon } from '../types';
 
 export function randomPicker(
   level: number,
-  pokemonCatalog: pokemon[]
-): pokemon[] {
+  pokemonCatalog: Pokemon[]
+): Pokemon[] {
   let counter = 0;
   const boundary = level * 2;
-  const newArray: pokemon[] = [];
+  const newArray: Pokemon[] = [];
   const idCache: number[] = [];
 
   do {
@@ -24,9 +24,9 @@ export function randomPicker(
   return newArray;
 }
 
-export function randomArranger(pokemons: pokemon[]): pokemon[] {
+export function randomArranger(pokemons: Pokemon[]): Pokemon[] {
   const newArray = [];
-  const shuffledPokemons: pokemon[] = [];
+  const shuffledPokemons: Pokemon[] = [];
   const boundary = pokemons.length;
 
   while (newArray.length < boundary) {
@@ -39,7 +39,7 @@ export function randomArranger(pokemons: pokemon[]): pokemon[] {
 
 export const getPokemons = async (
   level: number
-): Promise<[pokemon[], unknown]> => {
+): Promise<[Pokemon[], unknown]> => {
   try {
     const offset = Math.floor(Math.random() * 80); // pokeapi has 1154 pokemons, so enabling pagination offset of up to 1000?
     const { data } = await axios.get(
@@ -48,8 +48,8 @@ export const getPokemons = async (
       }`
     );
 
-    const pokemons: pokemon[] = data.results.map(
-      (item: pokemon, idx: number) => {
+    const pokemons: Pokemon[] = data.results.map(
+      (item: Pokemon, idx: number) => {
         const idxPad = item.url.slice(34, -1).toString().padStart(3, '0'); // this is to account for the lack accurate index of each pokemon when fetching as a list. hence some manipulation to get the appropiate image
         item.id = idx;
         item.url = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${idxPad}.png`;

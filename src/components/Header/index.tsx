@@ -2,10 +2,10 @@
 import './styles.css';
 
 // Types
-import { score } from '../../types';
+import { Score } from '../../types';
 
 export interface HeaderProps {
-  score: score;
+  score: Score;
 }
 
 function header({ score }: HeaderProps) {

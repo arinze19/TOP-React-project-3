@@ -1,12 +1,12 @@
-import { pokemon } from 'src/types';
+import { Pokemon } from '../../types';
 
 export function randomPicker(
   level: number,
-  pokemonCatalog: pokemon[]
-): pokemon[] {
+  pokemonCatalog: Pokemon[]
+): Pokemon[] {
   let counter = 0;
   const boundary = level * 2;
-  const newArray: pokemon[] = [];
+  const newArray: Pokemon[] = [];
   const idCache: number[] = [];
 
   do {
@@ -23,9 +23,9 @@ export function randomPicker(
   return newArray;
 }
 
-export function randomArranger(pokemons: pokemon[]): pokemon[] {
+export function randomArranger(pokemons: Pokemon[]): Pokemon[] {
   const newArray = [];
-  const shuffledPokemons: pokemon[] = [];
+  const shuffledPokemons: Pokemon[] = [];
   const boundary = pokemons.length;
 
   while (newArray.length < boundary) {
