@@ -1,6 +1,7 @@
 import React from 'react';
-import { TheHeader, TheLoader, TheMenu } from '@components/layout';
-import { CardList } from '@components/cards';
+import Card from '@components/Card';
+import Header from '@components/Header';
+import Loader from '@components/Loader';
 import { randomArranger, getPokemons } from '@helpers/app';
 import { pokemon, score } from './types';
 
@@ -82,16 +83,15 @@ function App() {
 
   return (
     <React.Fragment>
-      <TheHeader score={score} />
+      <Header score={score} />
       <h2 style={{ textAlign: 'center' }}>Level {level.current}</h2>
       {isLoading ? (
-        <TheLoader />
+        <Loader />
       ) : isError ? (
         <h1>Oops, something went wrong</h1>
       ) : (
-        <CardList pokemons={pokemons} handleClick={handleClick} />
+        <Card pokemons={pokemons} handleClick={handleClick} />
       )}
-      <TheMenu />
     </React.Fragment>
   );
 }

@@ -1,5 +1,12 @@
-import '@styles/layout/the-header.css';
-import { HeaderProps } from '../../types';
+// Styles
+import './styles.css';
+
+// Types
+import { score } from '../../types';
+
+export interface HeaderProps {
+  score: score;
+}
 
 function header({ score }: HeaderProps) {
   return (

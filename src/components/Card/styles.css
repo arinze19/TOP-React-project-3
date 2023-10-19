@@ -11,6 +11,15 @@
   transition: all 0.3s ease-in-out;
 }
 
+.card-list-container {
+  display: flex;
+  width: 50%;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem auto;
+  max-width: 1220px;
+}
+
 .card img {
   width: 120px;
   height: 120px;
@@ -30,5 +39,9 @@
   .card img {
     width: 80px;
     height: 80px;
+  }
+
+  .card-list-container {
+    width: 100%;
   }
 }

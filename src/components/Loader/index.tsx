@@ -1,6 +1,7 @@
-import '@styles/layout/the-loader.css';
+// Styles
+import './styles.css';
 
-function TheLoader() {
+function Loader() {
   return (
     <div className='loader-container'>
       <div className='lds-ring'>
@@ -13,4 +14,4 @@ function TheLoader() {
   );
 }
 
-export default TheLoader;
+export default Loader;

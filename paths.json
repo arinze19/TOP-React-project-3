@@ -4,7 +4,8 @@
     "paths": {
       "@styles/*": ["src/styles/*"],
       "@helpers/*": ["src/helper-functions/*"],
-      "@components/*": ["src/components/*"]
+      "@components/*": ["src/components/*"],
+      "@types/*": ["src/types/*"]
     }
   }
 }
