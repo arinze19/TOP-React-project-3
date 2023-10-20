@@ -1,7 +1,7 @@
 {
   "name": "poke-memo",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@types/node": "^16.9.3",
     "@types/react": "^17.0.21",
