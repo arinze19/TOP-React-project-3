@@ -11,6 +11,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = (id: number) => {
+    
     // find index of clicked pokemon
     const idx = pokemons.findIndex((pokemon: Pokemon) => pokemon.id === id);
 
