@@ -6,6 +6,7 @@ import { Pokemon } from '../../types';
 
 export interface CardProps {
   pokemons: Pokemon[];
+  level: number;
   handleClick: (id: number) => void;
 }
 
@@ -14,9 +15,10 @@ export interface CardItemProps {
   handleClick: (id: number) => void;
 }
 
-const Card = ({ pokemons, handleClick }: CardProps) => {
+const Card = ({ pokemons, level, handleClick }: CardProps) => {
   return (
     <div className='card-list__container'>
+      <h2>Level: {level}</h2>
       <div className='card-list__main'>
         {pokemons.map((pokemon, idx) => (
           <CardItem pokemon={pokemon} key={idx} handleClick={handleClick} />

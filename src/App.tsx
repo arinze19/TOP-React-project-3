@@ -2,95 +2,82 @@ import { useState, useEffect } from 'react';
 import Card from '@components/Card';
 import Header from '@components/Header';
 import Loader from '@components/Loader';
-import { randomArranger, getPokemons } from './utils';
-import { Pokemon, Score } from './types';
-
-//  ============ initial state values
-const initialScore: Score = {
-  currentScore: 0,
-  highScore: +JSON.parse(localStorage.getItem('highScore')!) || 0,
-};
+import { randomizer, getPokemons } from './utils';
+import { Pokemon } from './types';
 
 function App() {
-  const [score, setScore] = useState<Score>(initialScore);
-  const [level, setLevel] = useState({ current: 1 });
+  const [state, setState] = useState({ score: 0, level: 1 });
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
 
   const handleClick = (id: number) => {
-    const clickedPokemonIdx = pokemons.findIndex(
-      (pokemon: Pokemon) => pokemon.id === id
-    );
+    // find index of clicked pokemon
+    const idx = pokemons.findIndex((pokemon: Pokemon) => pokemon.id === id);
+
     // end game if selected pokemon has been clicked
-    if (pokemons[clickedPokemonIdx].isClicked) {
+    if (pokemons[idx].isClicked) {
       alert('Game Over Champ. Good game');
-      setScore((prevScore) => {
-        return {
-          ...prevScore,
-          currentScore: 0,
-        };
-      });
-      return setLevel({ ...level, current: 1 });
+      return setState({ score: 0, level: 1 });
     }
-    setScore((prevScore) => {
-      if (prevScore.currentScore >= prevScore.highScore) {
-        // set new high score in local storage
-        const highScore = prevScore.currentScore + 1;
-        JSON.stringify(localStorage.setItem('highScore', highScore.toString()));
-        return {
-          currentScore: prevScore.currentScore + 1,
-          highScore: prevScore.currentScore + 1,
-        };
-      } else {
-        return {
-          ...prevScore,
-          currentScore: prevScore.currentScore + 1,
-        };
-      }
-    });
-    pokemons[clickedPokemonIdx].isClicked = true;
-    const allPokesClicked = pokemons.every(
-      (pokemon) => pokemon.isClicked === true
-    );
-    if (allPokesClicked) {
+
+    pokemons[idx].isClicked = true;
+    state.score = state.score + 1;
+
+    // get high score from local storage
+    const highScore = localStorage.getItem('high_score')
+      ? JSON.parse(localStorage.getItem('high_score')!)
+      : 0;
+
+    // if current score is higher than high score, increment high score
+    if (state.score >= highScore) {
+      localStorage.setItem('high_score', JSON.stringify(state.score));
+    } else {
+      // else increment current score
+      setState({
+        ...state,
+        score: state.score + 1,
+      });
+    }
+
+    // check if all pokemons have been clicked
+    if (pokemons.every((pokemon) => pokemon.isClicked === true)) {
       // upgrade level if all pokemons have been clicked
-      setLevel((prevLevel) => ({
-        ...prevLevel,
-        current: prevLevel.current + 1,
-      }));
+      setState({
+        ...state,
+        level: state.level + 1,
+      });
     } else {
       // shuffle pokemons and set pokemon state
-      setPokemons(randomArranger(pokemons));
+      setPokemons(randomizer(pokemons));
     }
   };
 
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-      setIsError(false);
-      const [pokemons, error] = await getPokemons(level.current);
 
-      if (error) {
-        setIsError(true);
-      } else {
+      try {
+        const pokemons = await getPokemons(state.level);
         setPokemons(pokemons);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoading(false);
       }
-
-      setIsLoading(false);
     })();
-  }, [level]);
+  }, [state.level]);
 
   return (
     <>
-      <Header score={score} />
-      <h2 style={{ textAlign: 'center' }}>Level {level.current}</h2>
+      <Header score={state.score} />
       {isLoading ? (
         <Loader />
-      ) : isError ? (
-        <h1>Oops, something went wrong</h1>
       ) : (
-        <Card pokemons={pokemons} handleClick={handleClick} />
+        <Card
+          pokemons={pokemons}
+          level={state.level}
+          handleClick={handleClick}
+        />
       )}
     </>
   );

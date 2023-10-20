@@ -1,14 +1,18 @@
+import { useMemo } from 'react';
+
 // Styles
 import './styles.css';
 
-// Types
-import { Score } from '../../types';
-
 export interface HeaderProps {
-  score: Score;
+  score: number;
 }
 
-function header({ score }: HeaderProps) {
+function Header({ score }: HeaderProps) {
+  const highScore = useMemo(() => {
+    const score = localStorage.getItem('high_score');
+    return score ? parseInt(score) : 0;
+  }, [score]);
+
   return (
     <header className='header-container'>
       <div className='header-container__logo'>
@@ -17,13 +21,13 @@ function header({ score }: HeaderProps) {
       </div>
 
       <ul className='header-container__score-info'>
-        <li data-testid='current-score'>Your Score: {score.currentScore}</li>
+        <li data-testid='current-score'>Your Score: {score}</li>
         <li data-testid='high-score'>
-          High Score<i className='las la-star'></i>: {score.highScore}
+          High Score<i className='las la-star'></i>: {highScore}
         </li>
       </ul>
     </header>
   );
 }
 
-export default header;
+export default Header;
