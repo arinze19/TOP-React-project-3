@@ -19,4 +19,4 @@ the src folder holds three directories. 'components', 'helper-functions' and 'st
 
 ## Live Preview
 
-A live preview of this project can be found [Here](https://pokemon-memo.netlify.app)
+A live preview of this project can be found [Here](https://arinze19.github.io/TOP-React-project-3/)
