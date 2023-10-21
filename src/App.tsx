@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Card from '@components/Card';
 import Header from '@components/Header';
 import Loader from '@components/Loader';
+import Modal from '@components/Modal';
 import { randomizer, getPokemons } from './utils';
 import { Pokemon } from './types';
 
@@ -9,16 +10,16 @@ function App() {
   const [state, setState] = useState({ score: 0, level: 1 });
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [modal, setModal] = useState('');
 
   const handleClick = (id: number) => {
-    
     // find index of clicked pokemon
     const idx = pokemons.findIndex((pokemon: Pokemon) => pokemon.id === id);
 
     // end game if selected pokemon has been clicked
     if (pokemons[idx].isClicked) {
-      alert('Game Over Champ. Good game');
-      return setState({ score: 0, level: 1 });
+      setModal('game_over');
+      return;
     }
 
     pokemons[idx].isClicked = true;
@@ -36,7 +37,6 @@ function App() {
       // else increment current score
       setState({
         ...state,
-        score: state.score + 1,
       });
     }
 
@@ -68,6 +68,13 @@ function App() {
     })();
   }, [state.level]);
 
+  // show game play modal for 1.2 seconds
+  useEffect(() => {
+    setTimeout(() => {
+      setModal('game_play');
+    }, 1200);
+  }, []);
+
   return (
     <>
       <Header score={state.score} />
@@ -80,6 +87,27 @@ function App() {
           handleClick={handleClick}
         />
       )}
+
+      <Modal
+        header='Game Over'
+        open={modal === 'game_over'}
+        onClose={() => {
+          setModal('');
+          setState({ score: 0, level: 1 });
+        }}
+      >
+        This game is over. Your score is {state.score}. Good game!
+      </Modal>
+
+      <Modal
+        header='Game Play'
+        open={modal === 'game_play'}
+        onClose={() => setModal('')}
+      >
+        This game tests your memory. Click on a pokemon to earn points. If you
+        click on the same pokemon twice, the game is over. If you click on all
+        pokemons, you level up. Good luck!
+      </Modal>
     </>
   );
 }

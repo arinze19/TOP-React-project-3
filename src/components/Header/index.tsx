@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
-// Styles
-import './styles.css';
+import styled from 'styled-components';
 
 export interface HeaderProps {
   score: number;
@@ -14,20 +13,74 @@ function Header({ score }: HeaderProps) {
   }, [score]);
 
   return (
-    <header className='header-container'>
-      <div className='header-container__logo'>
+    <HeaderContainer>
+      <Logo>
         <img src='/logo.png' alt='poke-memo' />
         <h1>Poke Memo</h1>
-      </div>
+      </Logo>
 
-      <ul className='header-container__score-info'>
-        <li data-testid='current-score'>Your Score: {score}</li>
+      <ul>
+        <li data-testid='current-score'>
+          <span>Your Score: {score}</span>
+        </li>
         <li data-testid='high-score'>
-          High Score<i className='las la-star'></i>: {highScore}
+          <span>
+            High Score<i className='las la-star'></i>: {highScore}
+          </span>
         </li>
       </ul>
-    </header>
+    </HeaderContainer>
   );
 }
+
+// Styles
+const HeaderContainer = styled.header`
+  background-color: #10162f;
+  padding: 0.5rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .la-star {
+    color: #ffd500;
+  }
+
+  ul {
+    margin-right: 2rem;
+    padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin: 0;
+      padding: 0 1rem;
+    }
+  }
+`;
+
+const Logo = styled.div`
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 120px;
+    height: 100px;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+
+    h1 {
+      display: none;
+    }
+  }
+`;
 
 export default Header;
