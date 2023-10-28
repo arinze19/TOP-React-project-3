@@ -26,26 +26,12 @@ export function selector(catalog: Pokemon[], level: number) {
 }
 
 export function randomizer(pokemons: Pokemon[]): Pokemon[] {
-  // create a return array
-  const arr = [];
-
-  // create a set to keep track of selected indexes
-  const cache = new Set();
-
-  for (let i = 0; i < pokemons.length; i++) {
-    let id = Math.floor(Math.random() * pokemons.length);
-
-    // if the random integer is already in the set, generate another random integer
-    while (pokemons[id].id === pokemons[i].id || cache.has(id)) {
-      id = Math.floor(Math.random() * pokemons.length);
-    }
-
-    // add the pokemon to the return array and the set
-    arr[id] = pokemons[i];
-    cache.add(id);
+  for (let i = pokemons.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [pokemons[i], pokemons[j]] = [pokemons[j], pokemons[i]];
   }
 
-  return arr;
+  return pokemons;
 }
 
 export async function fetchPokemonsFromAPI(url: string) {
