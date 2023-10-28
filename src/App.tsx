@@ -10,7 +10,7 @@ function App() {
   const [state, setState] = useState({ score: 0, level: 1 });
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [modal, setModal] = useState('');
+  const [modal, setModal] = useState(''); // TODO: make a hook?
 
   const handleClick = (id: number) => {
     // find index of clicked pokemon
@@ -61,7 +61,7 @@ function App() {
         const pokemons = await getPokemons(state.level);
         setPokemons(pokemons);
       } catch (err) {
-        console.log(err);
+        console.log(err); // TODO: replace with react-toast
       } finally {
         setIsLoading(false);
       }
@@ -106,7 +106,7 @@ function App() {
       >
         This game tests your memory. Click on a pokemon to earn points. If you
         click on the same pokemon twice, the game is over. If you click on all
-        pokemons, you level up. Good luck!
+        pokemons exactly once, you level up. Good luck!
       </Modal>
     </>
   );
