@@ -1,26 +1,57 @@
 import styled from 'styled-components';
+import { useQuery } from 'react-query';
+
+import Loader from '@components/Loader';
+
+import { useDispatch, useSelector } from '../../hooks';
+import usePokemons from '../../hooks/usePokemons';
+import { setPokemons } from '../../store/slices/pokemon-slice';
+
+import { getPokemons, randomizer } from '../../utils';
 
 // Types
 import { Pokemon } from '../../types';
-
-export interface CardProps {
-  pokemons: Pokemon[];
-  level: number;
-  handleClick: (id: number) => void;
-}
 
 export interface CardItemProps {
   pokemon: Pokemon;
   handleClick: (id: number) => void;
 }
 
-const Card = ({ pokemons, level, handleClick }: CardProps) => {
+const Card = () => {
+  const dispatch = useDispatch();
+
+  const state = useSelector((state) => state.app);
+
+  const { handlePokemonClick } = usePokemons();
+
+  // fetch pokemons from API
+  const { isLoading, isFetching } = useQuery(
+    `https://pokeapi.co/api/v2/pokemon?limit=${state.level + 10}`,
+    () => getPokemons(state.level),
+    {
+      staleTime: Infinity,
+      onSuccess: (data) => {
+        const pokemons = randomizer(data);
+
+        dispatch(setPokemons(pokemons));
+      },
+    }
+  );
+
+  if (isLoading || isFetching) {
+    return <Loader />;
+  }
+
   return (
     <CardContainer>
-      <h2>Level: {level}</h2>
+      <h2>Level: {state.level}</h2>
       <CardList>
-        {pokemons.map((pokemon, idx) => (
-          <CardItem pokemon={pokemon} key={idx} handleClick={handleClick} />
+        {state.pokemons.map((pokemon, idx) => (
+          <CardItem
+            pokemon={pokemon}
+            key={idx}
+            handleClick={handlePokemonClick}
+          />
         ))}
       </CardList>
     </CardContainer>
@@ -29,13 +60,10 @@ const Card = ({ pokemons, level, handleClick }: CardProps) => {
 
 const CardItem = ({ pokemon, handleClick }: CardItemProps) => {
   return (
-    <CardItemContainer
-      onClick={() => handleClick(pokemon.id)}
-      data-testid='card-item'
-    >
+    <CardItemContainer onClick={() => handleClick(pokemon.id)}>
       <img src={pokemon.url} alt={pokemon.name} />
       <hr />
-      <span data-testid='card-item-name'>{pokemon.name}</span>
+      <span>{pokemon.name}</span>
     </CardItemContainer>
   );
 };

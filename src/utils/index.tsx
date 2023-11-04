@@ -26,12 +26,14 @@ export function selector(catalog: Pokemon[], level: number) {
 }
 
 export function randomizer(pokemons: Pokemon[]): Pokemon[] {
-  for (let i = pokemons.length - 1; i > 0; i--) {
+  const clone = [...pokemons];
+
+  for (let i = clone.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
-    [pokemons[i], pokemons[j]] = [pokemons[j], pokemons[i]];
+    [clone[i], clone[j]] = [clone[j], clone[i]];
   }
 
-  return pokemons;
+  return clone;
 }
 
 export async function fetchPokemonsFromAPI(url: string) {

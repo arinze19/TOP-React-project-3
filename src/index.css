@@ -44,6 +44,10 @@ textarea,
 select {
   font: inherit;
 }
+
+button {
+  cursor: pointer;
+}
 /*
   7. Avoid text overflows
 */

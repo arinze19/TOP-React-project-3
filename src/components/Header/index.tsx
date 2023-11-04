@@ -1,15 +1,14 @@
 import { useMemo } from 'react';
-
 import styled from 'styled-components';
 
-export interface HeaderProps {
-  score: number;
-}
+import { useSelector } from '../../hooks';
 
-function Header({ score }: HeaderProps) {
-  const highScore = useMemo(() => {
+function Header() {
+  const score = useSelector((state) => state.app.score);
+
+  const high_score = useMemo(() => {
     const score = localStorage.getItem('high_score');
-    return score ? parseInt(score) : 0;
+    return score ? JSON.parse(score) : 0;
   }, [score]);
 
   return (
@@ -23,12 +22,12 @@ function Header({ score }: HeaderProps) {
       </Logo>
 
       <ul>
-        <li data-testid='current-score'>
+        <li>
           <span>Your Score: {score}</span>
         </li>
-        <li data-testid='high-score'>
+        <li>
           <span>
-            High Score<i className='las la-star'></i>: {highScore}
+            High Score<i className='las la-star'></i>: {high_score}
           </span>
         </li>
       </ul>
