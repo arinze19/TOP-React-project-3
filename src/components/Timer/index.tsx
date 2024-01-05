@@ -12,10 +12,11 @@ import { type StoreState } from '../../types';
 interface TimerProps {
   level: number;
   modal: string;
+  loading: boolean;
   onChange: (data: Partial<StoreState>) => void;
 }
 
-const Timer = ({ level, modal, onChange }: TimerProps) => {
+const Timer = ({ level, modal, loading, onChange }: TimerProps) => {
   const [time, setTime] = useState(TIME_LIMIT);
 
   // Every Second deduct one
@@ -23,6 +24,9 @@ const Timer = ({ level, modal, onChange }: TimerProps) => {
     const timerId = setInterval(() => {
       // set time to time - 1
       setTime((prev) => {
+        // if its loading return current time
+        if (loading) return prev;
+
         // if modal is === game_over return
         if (modal === 'game_over') return prev;
 
