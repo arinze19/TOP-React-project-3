@@ -1,56 +1,78 @@
+import { useMemo } from 'react';
 import styled from 'styled-components';
-import { useQuery } from 'react-query';
 
-import Loader from '@components/Loader';
-
-import { useDispatch, useSelector } from '../../hooks';
-import usePokemons from '../../hooks/usePokemons';
-import { setPokemons } from '../../store/slices/pokemon-slice';
-
-import { getPokemons, randomizer } from '../../utils';
+import { randomizer } from '../../utils';
 
 // Types
-import { Pokemon } from '../../types';
+import { type Pokemon, type StoreState } from '../../types';
 
 export interface CardItemProps {
   pokemon: Pokemon;
   handleClick: (id: number) => void;
 }
 
-const Card = () => {
-  const dispatch = useDispatch();
+export interface CardProps {
+  level: number;
+  score: number;
+  pokemons: Pokemon[];
+  onChange: (data: Partial<StoreState>) => void;
+}
 
-  const state = useSelector((state) => state.app);
+const Card = ({ level, score, pokemons, onChange }: CardProps) => {
+  const Actions = useMemo(() => {
+    return {
+      handleChange: (id: number) => {
+        const state = {
+          pokemons: [...pokemons],
+          score: score,
+        };
 
-  const { handlePokemonClick } = usePokemons();
+        // find index of clicked pokemon
+        const idx = pokemons.findIndex((pokemon) => pokemon.id === id);
 
-  // fetch pokemons from API
-  const { isLoading, isFetching } = useQuery(
-    `https://pokeapi.co/api/v2/pokemon?limit=${state.level + 10}`,
-    () => getPokemons(state.level),
-    {
-      staleTime: Infinity,
-      onSuccess: (data) => {
-        const pokemons = randomizer(data);
+        // dispatch game over modal
+        if (state.pokemons[idx].isClicked)
+          return onChange({ modal: 'game_over' });
 
-        dispatch(setPokemons(pokemons));
+        state.pokemons[idx] = Object.assign(pokemons[idx], { isClicked: true });
+
+        // get high score from local storage
+        const high_score = localStorage.getItem('high_score')
+          ? JSON.parse(localStorage.getItem('high_score')!)
+          : 0;
+
+        state.score += 1;
+
+        // if current score is higher than high score, increment high score
+        if (state.score > high_score) {
+          localStorage.setItem('high_score', JSON.stringify(state.score));
+        }
+
+        // check if all pokemons have been clicked
+        if (state.pokemons.every((pokemon) => pokemon.isClicked === true))
+          return onChange({ level: level + 1, score: score + 1 });
+
+        onChange(state);
       },
-    }
-  );
+    };
+  }, [score]);
 
-  if (isLoading || isFetching) {
-    return <Loader />;
-  }
+  /**
+   * Shuffled Pokemons
+   */
+  const ShuffledPokemons = useMemo(() => {
+    return randomizer(pokemons);
+  }, [score]);
 
   return (
     <CardContainer>
-      <h2>Level: {state.level}</h2>
+      <h2>Level: {level}</h2>
       <CardList>
-        {state.pokemons.map((pokemon, idx) => (
+        {ShuffledPokemons.map((pokemon, idx) => (
           <CardItem
             pokemon={pokemon}
             key={idx}
-            handleClick={handlePokemonClick}
+            handleClick={() => Actions.handleChange(pokemon.id)}
           />
         ))}
       </CardList>
