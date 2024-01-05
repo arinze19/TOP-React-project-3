@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
-import { useDispatch } from '../../hooks';
+import { type StoreState } from '../../types';
 
-import { setModal } from '../../store/slices/pokemon-slice';
+interface InstructionsProps {
+  onChange: (data: Partial<StoreState>) => void;
+}
 
-const Instructions = () => {
-  const dispatch = useDispatch();
-
+const Instructions = ({ onChange }: InstructionsProps) => {
   return (
     <InstructionsContainer>
-      <button onClick={() => dispatch(setModal('game_play'))}>
+      <button onClick={() => onChange({ modal: 'game_play' })}>
         Instructions
       </button>
     </InstructionsContainer>

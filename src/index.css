@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700&family=Orbitron&display=swap&family=Courier+Prime:wght@400;700&display=swap');
 
 /*
   1. Use a more-intuitive box-sizing model.
@@ -84,4 +83,8 @@ html {
 
 li {
   list-style-type: none;
+}
+
+strong {
+  font-family: 'Orbitron', Arial, Helvetica, sans-serif;
 }

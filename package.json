@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": false,
   "dependencies": {
-    "@reduxjs/toolkit": "^1.9.7",
     "@types/node": "^16.9.3",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
     "axios": "^1.2.1",
     "craco": "^0.0.3",
+    "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",

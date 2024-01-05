@@ -5,6 +5,13 @@ export interface Pokemon {
   url: string;
 }
 
+export interface StoreState {
+  score: number;
+  level: number;
+  modal: string;
+  pokemons: Pokemon[];
+}
+
 export interface PokemonAPIResponse {
   count: number;
   next: string | null;
