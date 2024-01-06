@@ -24,11 +24,8 @@ const Timer = ({ level, modal, loading, onChange }: TimerProps) => {
     const timerId = setInterval(() => {
       // set time to time - 1
       setTime((prev) => {
-        // if its loading return current time
-        if (loading) return prev;
-
-        // if modal is === game_over return
-        if (modal === 'game_over') return prev;
+        // if modal is open return or it's loading
+        if (modal || loading) return prev;
 
         // if time is 0, game over
         if (prev === 0) {
