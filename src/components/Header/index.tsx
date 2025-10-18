@@ -15,7 +15,7 @@ function Header({ score }: HeaderProps) {
     <HeaderContainer>
       <Logo>
         <img
-          src='https://res.cloudinary.com/dmrib2gtg/image/upload/v1697921863/logo_ktdpcf.png'
+          src='https://res.cloudinary.com/arinzeobi/image/upload/v1697921863/logo_ktdpcf.png'
           alt='poke-memo'
         />
         <h1>Poke Memo</h1>
