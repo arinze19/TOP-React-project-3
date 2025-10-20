@@ -66,12 +66,12 @@ function App() {
 
       <Instructions onChange={Actions.onChange} />
 
-      <Timer
+      {/* <Timer
         level={state.level}
         modal={state.modal}
         loading={isLoading || isFetching}
         onChange={Actions.onChange}
-      />
+      /> */}
 
       <Modal
         header='Game Over'

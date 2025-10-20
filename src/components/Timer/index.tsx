@@ -17,40 +17,41 @@ interface TimerProps {
 }
 
 const Timer = ({ level, modal, loading, onChange }: TimerProps) => {
-  const [time, setTime] = useState(TIME_LIMIT);
+  const [time, setTime] = useState(0);
+
+
+  // useEffect(() => {
+  //   setTime(TIME_LIMIT * level);
+
+  //   const timerId = setInterval((prev) => prev - 1, 1000);
+
+  //   return () => clearInterval(timerId);
+  // }, [level])
 
   // Every Second deduct one
-  useEffect(() => {
-    const timerId = setInterval(() => {
-      // set time to time - 1
-      setTime((prev) => {
-        // if modal is open return or it's loading
-        if (modal || loading) return prev;
+  // useEffect(() => {
+  //   const timerId = setInterval(() => {
+  //     // set time to time - 1
+  //     setTime((prev) => {
+  //       // if time is 0, game over
+  //       if (prev === 0) {
+  //         /**
+  //          * display modal
+  //          */
+  //         onChange({ modal: 'game_over' });
+  //         /**
+  //          * stop the timer
+  //          */
+  //         return 0;
+  //       }
 
-        // if time is 0, game over
-        if (prev === 0) {
-          /**
-           * display modal
-           */
-          onChange({ modal: 'game_over' });
-          /**
-           * stop the timer
-           */
-          return 0;
-        }
+  //       // decrement time
+  //       return prev - 1;
+  //     });
+  //   }, 1000);
 
-        // decrement time
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearTimeout(timerId);
-  }, [modal]);
-
-  // on level change, add some more seconds to the timer
-  useEffect(() => {
-    setTime((time + level) * 2);
-  }, [level]);
+  //   return () => clearTimeout(timerId);
+  // }, [modal]);
 
   // when time is 0, game over
   const formatted_time = useMemo(() => {
